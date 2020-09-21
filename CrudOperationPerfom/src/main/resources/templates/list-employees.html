@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Employee Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Employee Directory</h3>
+	<hr>
+	
+	
+	
+	
+	
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+			
+			    
+			    <th>Software Id</th>
+				<th>Software Name</th>
+				<th>Software Technology</th>
+				<th>Software Service </th>
+				<th>Software Language </th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="tempEmployee : ${employees}">
+			    <td th:text="${tempEmployee.software_id}" />
+				<td th:text="${tempEmployee.softwareName}" />	
+				<td th:text="${tempEmployee.softwareTech}" />	
+				<td th:text="${tempEmployee.softwareService}" />	
+				<td th:text="${tempEmployee.SoftwareLang}" />	
+				
+				<td>
+					
+					<a th:href="@{/employees/showFormForUpdate(employeeId=${tempEmployee.software_id})}"
+					    class="btn btn-outline-info">
+						Update
+					</a>
+					
+								
+					<a th:href="@{/employees/delete(employeeId=${tempEmployee.software_id})}"
+					   class="btn btn-outline-danger"
+					   onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+						Delete
+					</a>
+					
+				</td>
+				
+				
+			</tr>
+		</tbody>		
+	</table>
+	<a th:href="@{/employees/showFormForAdd}"
+		class="btn btn-outline-danger">
+		Add Employee
+	</a>
+	
+</div>
+	
+</body>
+</html>
+
+
+
